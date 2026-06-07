@@ -1,0 +1,618 @@
+[33mcommit 697de6fa54c40ca640c87ad55a9a9a9eb30b2a02[m
+Author: jonathan <jonathan.medesc@iesjulianmarias.es>
+Date:   Sun Jun 7 23:09:37 2026 +0200
+
+    Creacion de clase persona
+
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c136dc8[m
+[1m--- /dev/null[m
+[1m+++ b/.gitignore[m
+[36m@@ -0,0 +1,3 @@[m
+[32m+[m[32m*.class[m
+[32m+[m[32m/build/[m
+[32m+[m[32m/dist/[m
+[1mdiff --git a/build.xml b/build.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..93646e9[m
+[1m--- /dev/null[m
+[1m+++ b/build.xml[m
+[36m@@ -0,0 +1,73 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="UTF-8"?>[m
+[32m+[m[32m<!-- You may freely edit this file. See commented blocks below for -->[m
+[32m+[m[32m<!-- some examples of how to customize the build. -->[m
+[32m+[m[32m<!-- (If you delete it and reopen the project it will be recreated.) -->[m
+[32m+[m[32m<!-- By default, only the Clean and Build commands use this build script. -->[m
+[32m+[m[32m<!-- Commands such as Run, Debug, and Test only use this build script if -->[m
+[32m+[m[32m<!-- the Compile on Save feature is turned off for the project. -->[m
+[32m+[m[32m<!-- You can turn off the Compile on Save (or Deploy on Save) setting -->[m
+[32m+[m[32m<!-- in the project's Project Properties dialog box.-->[m
+[32m+[m[32m<project name="ProgramameEste" default="default" basedir=".">[m
+[32m+[m[32m    <description>Builds, tests, and runs the project ProgramameEste.</description>[m
+[32m+[m[32m    <import file="nbproject/build-impl.xml"/>[m
+[32m+[m[32m    <!--[m
+[32m+[m
+[32m+[m[32m    There exist several targets which are by default empty and which can be[m[41m [m
+[32m+[m[32m    used for execution of your tasks. These targets are usually executed[m[41m [m
+[32m+[m[32m    before and after some main targets. They are:[m[41m [m
+[32m+[m
+[32m+[m[32m      -pre-init:                 called before initialization of project properties[m
+[32m+[m[32m      -post-init:                called after initialization of project properties[m
+[32m+[m[32m      -pre-compile:              called before javac compilation[m
+[32m+[m[32m      -post-compile:             called after javac compilation[m
+[32m+[m[32m      -pre-compile-single:       called before javac compilation of single file[m
+[32m+[m[32m      -post-compile-single:      called after javac compilation of single file[m
+[32m+[m[32m      -pre-compile-test:         called before javac compilation of JUnit tests[m
+[32m+[m[32m      -post-compile-test:        called after javac compilation of JUnit tests[m
+[32m+[m[32m      -pre-compile-test-single:  called before javac compilation of single JUnit test[m
+[32m+[m[32m      -post-compile-test-single: called after javac compilation of single JUunit test[m
+[32m+[m[32m      -pre-jar:                  called before JAR building[m
+[32m+[m[32m      -post-jar:                 called after JAR building[m
+[32m+[m[32m      -post-clean:               called after cleaning build products[m
+[32m+[m
+[32m+[m[32m    (Targets beginning with '-' are not intended to be called on their own.)[m
+[32m+[m
+[32m+[m[32m    Example of inserting an obfuscator after compilation could look like this:[m
+[32m+[m
+[32m+[m[32m        <target name="-post-compile">[m
+[32m+[m[32m            <obfuscate>[m
+[32m+[m[32m                <fileset dir="${build.classes.dir}"/>[m
+[32m+[m[32m            </obfuscate>[m
+[32m+[m[32m        </target>[m
+[32m+[m
+[32m+[m[32m    For list of available properties check the imported[m[41m [m
+[32m+[m[32m    nbproject/build-impl.xml file.[m[41m [m
+[32m+[m
+[32m+[m
+[32m+[m[32m    Another way to customize the build is by overriding existing main targets.[m
+[32m+[m[32m    The targets of interest are:[m[41m [m
+[32m+[m
+[32m+[m[32m      -init-macrodef-javac:     defines macro for javac compilation[m
+[32m+[m[32m      -init-macrodef-junit:     defines macro for junit execution[m
+[32m+[m[32m      -init-macrodef-debug:     defines macro for class debugging[m
+[32m+[m[32m      -init-macrodef-java:      defines macro for class execution[m
+[32m+[m[32m      -do-jar:                  JAR building[m
+[32m+[m[32m      run:                      execution of project[m[41m [m
+[32m+[m[32m      -javadoc-build:           Javadoc generation[m
+[32m+[m[32m      test-report:              JUnit report generation[m
+[32m+[m
+[32m+[m[32m    An example of overriding the target for project execution could look like this:[m
+[32m+[m
+[32m+[m[32m        <target name="run" depends="ProgramameEste-impl.jar">[m
+[32m+[m[32m            <exec dir="bin" executable="launcher.exe">[m
+[32m+[m[32m                <arg file="${dist.jar}"/>[m
+[32m+[m[32m            </exec>[m
+[32m+[m[32m        </target>[m
+[32m+[m
+[32m+[m[32m    Notice that the overridden target depends on the jar target and not only on[m[41m [m
+[32m+[m[32m    the compile target as the regular run target does. Again, for a list of available[m[41m [m
+[32m+[m[32m    properties which you can use, check the target you are overriding in the[m
+[32m+[m[32m    nbproject/build-impl.xml file.[m[41m [m
+[32m+[m
+[32m+[m[32m    -->[m
+[32m+[m[32m</project>[m
+[1mdiff --git a/build/built-jar.properties b/build/built-jar.properties[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c42b9a8[m
+[1m--- /dev/null[m
+[1m+++ b/build/built-jar.properties[m
+[36m@@ -0,0 +1,4 @@[m
+[32m+[m[32m#Sun, 07 Jun 2026 21:14:46 +0200[m
+[32m+[m
+[32m+[m
+[32m+[m[32mC\:\\Users\\mejon.JONATHAN\\Documents\\NetBeansProjects\\ProgramameEste=[m
+[1mdiff --git a/build/classes/programameeste/ej1.class b/build/classes/programameeste/ej1.class[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e44b48b[m
+Binary files /dev/null and b/build/classes/programameeste/ej1.class differ
+[1mdiff --git a/dist/ProgramameEste.jar b/dist/ProgramameEste.jar[m
+[1mnew file mode 100644[m
+[1mindex 0000000..fafb7a8[m
+Binary files /dev/null and b/dist/ProgramameEste.jar differ
+[1mdiff --git a/dist/README.TXT b/dist/README.TXT[m
+[1mnew file mode 100644[m
+[1mindex 0000000..bab35ff[m
+[1m--- /dev/null[m
+[1m+++ b/dist/README.TXT[m
+[36m@@ -0,0 +1,32 @@[m
+[32m+[m[32m========================[m
+[32m+[m[32mBUILD OUTPUT DESCRIPTION[m
+[32m+[m[32m========================[m
+[32m+[m
+[32m+[m[32mWhen you build an Java application project that has a main class, the IDE[m
+[32m+[m[32mautomatically copies all of the JAR[m
+[32m+[m[32mfiles on the projects classpath to your projects dist/lib folder. The IDE[m
+[32m+[m[32malso adds each of the JAR files to the Class-Path element in the application[m
+[32m+[m[32mJAR files manifest file (MANIFEST.MF).[m
+[32m+[m
+[32m+[m[32mTo run the project from the command line, go to the dist folder and[m
+[32m+[m[32mtype the following:[m
+[32m+[m
+[32m+[m[32mjava -jar "ProgramameEste.jar"[m[41m [m
+[32m+[m
+[32m+[m[32mTo distribute this project, zip up the dist folder (including the lib folder)[m
+[32m+[m[32mand distribute the ZIP file.[m
+[32m+[m
+[32m+[m[32mNotes:[m
+[32m+[m
+[32m+[m[32m* If two JAR files on the project classpath have the same name, only the first[m
+[32m+[m[32mJAR file is copied to the lib folder.[m
+[32m+[m[32m* Only JAR files are copied to the lib folder.[m
+[32m+[m[32mIf the classpath contains other types of files or folders, these files (folders)[m
+[32m+[m[32mare not copied.[m
+[32m+[m[32m* If a library on the projects classpath also has a Class-Path element[m
+[32m+[m[32mspecified in the manifest,the content of the Class-Path element has to be on[m
+[32m+[m[32mthe projects runtime path.[m
+[32m+[m[32m* To set a main class in a standard Java project, right-click the project node[m
+[32m+[m[32min the Projects window and choose Properties. Then click Run and enter the[m
+[32m+[m[32mclass name in the Main Class field. Alternatively, you can manually type the[m
+[32m+[m[32mclass name in the manifest Main-Class element.[m
+[1mdiff --git a/dist/javadoc/allclasses-index.html b/dist/javadoc/allclasses-index.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..2a138f0[m
+[1m--- /dev/null[m
+[1m+++ b/dist/javadoc/allclasses-index.html[m
+[36m@@ -0,0 +1,68 @@[m
+[32m+[m[32m<!DOCTYPE HTML>[m
+[32m+[m[32m<html lang="es">[m
+[32m+[m[32m<head>[m
+[32m+[m[32m<!-- Generated by javadoc (21) on Sun Jun 07 22:27:31 CEST 2026 -->[m
+[32m+[m[32m<title>All Classes and Interfaces</title>[m
+[32m+[m[32m<meta name="viewport" content="width=device-width, initial-scale=1">[m
+[32m+[m[32m<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">[m
+[32m+[m[32m<meta name="dc.created" content="2026-06-07">[m
+[32m+[m[32m<meta name="description" content="class index">[m
+[32m+[m[32m<meta name="generator" content="javadoc/AllClassesIndexWriter">[m
+[32m+[m[32m<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">[m
+[32m+[m[32m<link rel="stylesheet" type="text/css" href="script-dir/jquery-ui.min.css" title="Style">[m
+[32m+[m[32m<script type="text/javascript" src="script.js"></script>[m
+[32m+[m[32m<script type="text/javascript" src="script-dir/jquery-3.7.1.min.js"></script>[m
+[32m+[m[32m<script type="text/javascript" src="script-dir/jquery-ui.min.js"></script>[m
+[32m+[m[32m</head>[m
+[32m+[m[32m<body class="all-classes-index-page">[m
+[32m+[m[32m<script type="text/javascript">var pathtoroot = "./";[m
+[32m+[m[32mloadScripts(document, 'script');</script>[m
+[32m+[m[32m<noscript>[m
+[32m+[m[32m<div>JavaScript is disabled on your browser.</div>[m
+[32m+[m[32m</noscript>[m
+[32m+[m[32m<div class="flex-box">[m
+[32m+[m[32m<header role="banner" class="flex-header">[m
+[32m+[m[32m<nav role="navigation">[m
+[32m+[m[32m<!-- ========= START OF TOP NAVBAR ======= -->[m
+[32m+[m[32m<div class="top-nav" id="navbar-top"><button id="navbar-toggle-button" aria-controls="navbar-top" aria-expanded="false" aria-label="Toggle navigation links"><span class="nav-bar-toggle-icon">&nbsp;</span><span class="nav-bar-toggle-icon">&nbsp;</span><span class="nav-bar-toggle-icon">&nbsp;</span></button>[m
+[32m+[m[32m<div class="skip-nav"><a href="#skip-navbar-top" title="Skip navigation links">Skip navigation links</a></div>[m
+[32m+[m[32m<ul id="navbar-top-firstrow" class="nav-list" title="Navigation">[m
+[32m+[m[32m<li><a href="programameeste/package-summary.html">Package</a></li>[m
+[32m+[m[32m<li>Class</li>[m
+[32m+[m[32m<li>Use</li>[m
+[32m+[m[32m<li><a href="overview-tree.html">Tree</a></li>[m
+[32m+[m[32m<li><a href="index-files/index-1.html">Index</a></li>[m
+[32m+[m[32m<li><a href="help-doc.html#all-classes">Help</a></li>[m
+[32m+[m[32m</ul>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m<div class="sub-nav">[m
+[32m+[m[32m<div id="navbar-sub-list"></div>[m
+[32m+[m[32m<div class="nav-list-search"><a href="search.html">SEARCH</a>[m
+[32m+[m[32m<input type="text" id="search-input" disabled placeholder="Search">[m
+[32m+[m[32m<input type="reset" id="reset-button" disabled value="reset">[m
+[32m+[m[32m</div>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m<!-- ========= END OF TOP NAVBAR ========= -->[m
+[32m+[m[32m<span class="skip-nav" id="skip-navbar-top"></span></nav>[m
+[32m+[m[32m</header>[m
+[32m+[m[32m<div class="flex-content">[m
+[32m+[m[32m<main role="main">[m
+[32m+[m[32m<div class="header">[m
+[32m+[m[32m<h1 title="All Classes and Interfaces" class="title">All Classes and Interfaces</h1>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m<div id="all-classes-table">[m
+[32m+[m[32m<div class="caption"><span>Classes</span></div>[m
+[32m+[m[32m<div class="summary-table two-column-summary">[m
+[32m+[m[32m<div class="table-header col-first">Class</div>[m
+[32m+[m[32m<div class="table-header col-last">Description</div>[m
+[32m+[m[32m<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="programameeste/Persona.html" title="class in programameeste">Persona</a></div>[m
+[32m+[m[32m<div class="col-last even-row-color all-classes-table all-classes-table-tab2">[m
+[32m+[m[32m<div class="block">Representa a una persona con atributos básicos como nombre, edad y un identificador único.</div>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m</main>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m</body>[m
+[32m+[m[32m</html>[m
+[1mdiff --git a/dist/javadoc/allpackages-index.html b/dist/javadoc/allpackages-index.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..caf1629[m
+[1m--- /dev/null[m
+[1m+++ b/dist/javadoc/allpackages-index.html[m
+[36m@@ -0,0 +1,64 @@[m
+[32m+[m[32m<!DOCTYPE HTML>[m
+[32m+[m[32m<html lang="es">[m
+[32m+[m[32m<head>[m
+[32m+[m[32m<!-- Generated by javadoc (21) on Sun Jun 07 22:27:31 CEST 2026 -->[m
+[32m+[m[32m<title>All Packages</title>[m
+[32m+[m[32m<meta name="viewport" content="width=device-width, initial-scale=1">[m
+[32m+[m[32m<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">[m
+[32m+[m[32m<meta name="dc.created" content="2026-06-07">[m
+[32m+[m[32m<meta name="description" content="package index">[m
+[32m+[m[32m<meta name="generator" content="javadoc/AllPackagesIndexWriter">[m
+[32m+[m[32m<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">[m
+[32m+[m[32m<link rel="stylesheet" type="text/css" href="script-dir/jquery-ui.min.css" title="Style">[m
+[32m+[m[32m<script type="text/javascript" src="script.js"></script>[m
+[32m+[m[32m<script type="text/javascript" src="script-dir/jquery-3.7.1.min.js"></script>[m
+[32m+[m[32m<script type="text/javascript" src="script-dir/jquery-ui.min.js"></script>[m
+[32m+[m[32m</head>[m
+[32m+[m[32m<body class="all-packages-index-page">[m
+[32m+[m[32m<script type="text/javascript">var pathtoroot = "./";[m
+[32m+[m[32mloadScripts(document, 'script');</script>[m
+[32m+[m[32m<noscript>[m
+[32m+[m[32m<div>JavaScript is disabled on your browser.</div>[m
+[32m+[m[32m</noscript>[m
+[32m+[m[32m<div class="flex-box">[m
+[32m+[m[32m<header role="banner" class="flex-header">[m
+[32m+[m[32m<nav role="navigation">[m
+[32m+[m[32m<!-- ========= START OF TOP NAVBAR ======= -->[m
+[32m+[m[32m<div class="top-nav" id="navbar-top"><button id="navbar-toggle-button" aria-controls="navbar-top" aria-expanded="false" aria-label="Toggle navigation links"><span class="nav-bar-toggle-icon">&nbsp;</span><span class="nav-bar-toggle-icon">&nbsp;</span><span class="nav-bar-toggle-icon">&nbsp;</span></button>[m
+[32m+[m[32m<div class="skip-nav"><a href="#skip-navbar-top" title="Skip navigation links">Skip navigation links</a></div>[m
+[32m+[m[32m<ul id="navbar-top-firstrow" class="nav-list" title="Navigation">[m
+[32m+[m[32m<li><a href="programameeste/package-summary.html">Package</a></li>[m
+[32m+[m[32m<li>Class</li>[m
+[32m+[m[32m<li>Use</li>[m
+[32m+[m[32m<li><a href="overview-tree.html">Tree</a></li>[m
+[32m+[m[32m<li><a href="index-files/index-1.html">Index</a></li>[m
+[32m+[m[32m<li><a href="help-doc.html#all-packages">Help</a></li>[m
+[32m+[m[32m</ul>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m<div class="sub-nav">[m
+[32m+[m[32m<div id="navbar-sub-list"></div>[m
+[32m+[m[32m<div class="nav-list-search"><a href="search.html">SEARCH</a>[m
+[32m+[m[32m<input type="text" id="search-input" disabled placeholder="Search">[m
+[32m+[m[32m<input type="reset" id="reset-button" disabled value="reset">[m
+[32m+[m[32m</div>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m<!-- ========= END OF TOP NAVBAR ========= -->[m
+[32m+[m[32m<span class="skip-nav" id="skip-navbar-top"></span></nav>[m
+[32m+[m[32m</header>[m
+[32m+[m[32m<div class="flex-content">[m
+[32m+[m[32m<main role="main">[m
+[32m+[m[32m<div class="header">[m
+[32m+[m[32m<h1 title="All&amp;nbsp;Packages" class="title">All&nbsp;Packages</h1>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m<div class="caption"><span>Package Summary</span></div>[m
+[32m+[m[32m<div class="summary-table two-column-summary">[m
+[32m+[m[32m<div class="table-header col-first">Package</div>[m
+[32m+[m[32m<div class="table-header col-last">Description</div>[m
+[32m+[m[32m<div class="col-first even-row-color"><a href="programameeste/package-summary.html">programameeste</a></div>[m
+[32m+[m[32m<div class="col-last even-row-color">&nbsp;</div>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m</main>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m</body>[m
+[32m+[m[32m</html>[m
+[1mdiff --git a/dist/javadoc/copy.svg b/dist/javadoc/copy.svg[m
+[1mnew file mode 100644[m
+[1mindex 0000000..d435f6c[m
+[1m--- /dev/null[m
+[1m+++ b/dist/javadoc/copy.svg[m
+[36m@@ -0,0 +1,33 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="UTF-8"?>[m
+[32m+[m
+[32m+[m[32m<!--[m
+[32m+[m[32m Copyright (c) 2021, Oracle and/or its affiliates. All rights reserved.[m
+[32m+[m[32m ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32m-->[m
+[32m+[m
+[32m+[m[32m<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 460" fill="#505050">[m
+[32m+[m[32m  <path[m
+[32m+[m[32m     d="M 346,8 H 108 C 90,8 75,23 75,41 v 316 c 0,18 15,33 33,33 h 238 c 18,0 33,-15 33,-33 V 41 C 379,23 364,8 346,8 Z m -8,344 H 116 c -2,0 -3,-1 -3,-3 V 49 c 0,-2 1,-3 3,-3 h 222 c 2,0 3,1 3,3 v 300 h 10e-4 c 0,2 -1,3 -3,3 z"/>[m
+[32m+[m[32m  <path[m
+[32m+[m[32m     d="m 290,389 v 26 h 10e-4 c 0,2 -1,3 -3,3 H 49 c -2,0 -3,-1 -3,-3 V 99 c 0,-2 1,-3 3,-3 h 27 v 0 l -5e-4,-38 H 41 C 23,58 8,73 8,91 v 332 c 10e-4,18 15,33 33,33 h 254 c 18,0 33,-15 33,-33 v -34"/>[m
+[32m+[m[32m</svg>[m
+[1mdiff --git a/dist/javadoc/element-list b/dist/javadoc/element-list[m
+[1mnew file mode 100644[m
+[1mindex 0000000..4e098a6[m
+[1m--- /dev/null[m
+[1m+++ b/dist/javadoc/element-list[m
+[36m@@ -0,0 +1 @@[m
+[32m+[m[32mprogramameeste[m
+[1mdiff --git a/dist/javadoc/help-doc.html b/dist/javadoc/help-doc.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..cbc1c04[m
+[1m--- /dev/null[m
+[1m+++ b/dist/javadoc/help-doc.html[m
+[36m@@ -0,0 +1,183 @@[m
+[32m+[m[32m<!DOCTYPE HTML>[m
+[32m+[m[32m<html lang="es">[m
+[32m+[m[32m<head>[m
+[32m+[m[32m<!-- Generated by javadoc (21) on Sun Jun 07 22:27:31 CEST 2026 -->[m
+[32m+[m[32m<title>API Help</title>[m
+[32m+[m[32m<meta name="viewport" content="width=device-width, initial-scale=1">[m
+[32m+[m[32m<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">[m
+[32m+[m[32m<meta name="dc.created" content="2026-06-07">[m
+[32m+[m[32m<meta name="description" content="help">[m
+[32m+[m[32m<meta name="generator" content="javadoc/HelpWriter">[m
+[32m+[m[32m<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">[m
+[32m+[m[32m<link rel="stylesheet" type="text/css" href="script-dir/jquery-ui.min.css" title="Style">[m
+[32m+[m[32m<script type="text/javascript" src="script.js"></script>[m
+[32m+[m[32m<script type="text/javascript" src="script-dir/jquery-3.7.1.min.js"></script>[m
+[32m+[m[32m<script type="text/javascript" src="script-dir/jquery-ui.min.js"></script>[m
+[32m+[m[32m</head>[m
+[32m+[m[32m<body class="help-page">[m
+[32m+[m[32m<script type="text/javascript">var pathtoroot = "./";[m
+[32m+[m[32mloadScripts(document, 'script');</script>[m
+[32m+[m[32m<noscript>[m
+[32m+[m[32m<div>JavaScript is disabled on your browser.</div>[m
+[32m+[m[32m</noscript>[m
+[32m+[m[32m<div class="flex-box">[m
+[32m+[m[32m<header role="banner" class="flex-header">[m
+[32m+[m[32m<nav role="navigation">[m
+[32m+[m[32m<!-- ========= START OF TOP NAVBAR ======= -->[m
+[32m+[m[32m<div class="top-nav" id="navbar-top"><button id="navbar-toggle-button" aria-controls="navbar-top" aria-expanded="false" aria-label="Toggle navigation links"><span class="nav-bar-toggle-icon">&nbsp;</span><span class="nav-bar-toggle-icon">&nbsp;</span><span class="nav-bar-toggle-icon">&nbsp;</span></button>[m
+[32m+[m[32m<div class="skip-nav"><a href="#skip-navbar-top" title="Skip navigation links">Skip navigation links</a></div>[m
+[32m+[m[32m<ul id="navbar-top-firstrow" class="nav-list" title="Navigation">[m
+[32m+[m[32m<li><a href="programameeste/package-summary.html">Package</a></li>[m
+[32m+[m[32m<li>Class</li>[m
+[32m+[m[32m<li>Use</li>[m
+[32m+[m[32m<li><a href="overview-tree.html">Tree</a></li>[m
+[32m+[m[32m<li><a href="index-files/index-1.html">Index</a></li>[m
+[32m+[m[32m<li class="nav-bar-cell1-rev">Help</li>[m
+[32m+[m[32m</ul>[m
+[32m+[m[32m<ul class="sub-nav-list-small">[m
+[32m+[m[32m<li>[m
+[32m+[m[32m<p>Help:</p>[m
+[32m+[m[32m<ul>[m
+[32m+[m[32m<li><a href="#help-navigation">Navigation</a></li>[m
+[32m+[m[32m<li><a href="#help-pages">Pages</a></li>[m
+[32m+[m[32m</ul>[m
+[32m+[m[32m</li>[m
+[32m+[m[32m</ul>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m<div class="sub-nav">[m
+[32m+[m[32m<div id="navbar-sub-list">[m
+[32m+[m[32m<ul class="sub-nav-list">[m
+[32m+[m[32m<li>Help:&nbsp;</li>[m
+[32m+[m[32m<li><a href="#help-navigation">Navigation</a>&nbsp;|&nbsp;</li>[m
+[32m+[m[32m<li><a href="#help-pages">Pages</a></li>[m
+[32m+[m[32m</ul>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m<div class="nav-list-search"><a href="search.html">SEARCH</a>[m
+[32m+[m[32m<input type="text" id="search-input" disabled placeholder="Search">[m
+[32m+[m[32m<input type="reset" id="reset-button" disabled value="reset">[m
+[32m+[m[32m</div>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m<!-- ========= END OF TOP NAVBAR ========= -->[m
+[32m+[m[32m<span class="skip-nav" id="skip-navbar-top"></span></nav>[m
+[32m+[m[32m</header>[m
+[32m+[m[32m<div class="flex-content">[m
+[32m+[m[32m<main role="main">[m
+[32m+[m[32m<h1 class="title">JavaDoc Help</h1>[m
+[32m+[m[32m<ul class="help-toc">[m
+[32m+[m[32m<li><a href="#help-navigation">Navigation</a>:[m[41m [m
+[32m+[m[32m<ul class="help-subtoc">[m
+[32m+[m[32m<li><a href="#search">Search</a></li>[m
+[32m+[m[32m</ul>[m
+[32m+[m[32m</li>[m
+[32m+[m[32m<li><a href="#help-pages">Kinds of Pages</a>:[m[41m [m
+[32m+[m[32m<ul class="help-subtoc">[m
+[32m+[m[32m<li><a href="#package">Package</a></li>[m
+[32m+[m[32m<li><a href="#class">Class or Interface</a></li>[m
+[32m+[m[32m<li><a href="#doc-file">Other Files</a></li>[m
+[32m+[m[32m<li><a href="#use">Use</a></li>[m
+[32m+[m[32m<li><a href="#tree">Tree (Class Hierarchy)</a></li>[m
+[32m+[m[32m<li><a href="#all-packages">All Packages</a></li>[m
+[32m+[m[32m<li><a href="#all-classes">All Classes and Interfaces</a></li>[m
+[32m+[m[32m<li><a href="#index">Index</a></li>[m
+[32m+[m[32m</ul>[m
+[32m+[m[32m</li>[m
+[32m+[m[32m</ul>[m
+[32m+[m[32m<hr>[m
+[32m+[m[32m<div class="sub-title">[m
+[32m+[m[32m<h2 id="help-navigation">Navigation</h2>[m
+[32m+[m[32mStarting from the <a href="index.html">Overview</a> page, you can browse the documentation using the links in each page, and in the navigation bar at the top of each page. The <a href="index-files/index-1.html">Index</a> and Search box allow you to navigate to specific declarations and summary pages, including: <a href="allpackages-index.html">All Packages</a>, <a href="allclasses-index.html">All Classes and Interfaces</a>[m
+[32m+[m[32m<section class="help-section" id="search">[m
+[32m+[m[32m<h3>Search</h3>[m
+[32m+[m[32m<p>You can search for definitions of modules, packages, types, fields, methods, system properties and other terms defined in the API. These items can be searched using part or all of the name, optionally using "camelCase" abbreviations, or multiple search terms separated by whitespace. Some examples:</p>[m
+[32m+[m[32m<ul class="help-section-list">[m
+[32m+[m[32m<li><code>"j.l.obj"</code> matches "java.lang.Object"</li>[m
+[32m+[m[32m<li><code>"InpStr"</code> matches "java.io.InputStream"</li>[m
+[32m+[m[32m<li><code>"math exact long"</code> matches "java.lang.Math.absExact(long)"</li>[m
+[32m+[m[32m</ul>[m
+[32m+[m[32m<p>Refer to the <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/javadoc/javadoc-search-spec.html">Javadoc Search Specification</a> for a full description of search features.</p>[m
+[32m+[m[32m</section>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m<hr>[m
+[32m+[m[32m<div class="sub-title">[m
+[32m+[m[32m<h2 id="help-pages">Kinds of Pages</h2>[m
+[32m+[m[32mThe following sections describe the different kinds of pages in this collection.[m
+[32m+[m[32m<section class="help-section" id="package">[m
+[32m+[m[32m<h3>Package</h3>[m
+[32m+[m[32m<p>Each package has a page that contains a list of its classes and interfaces, with a summary for each. These pages may contain the following categories:</p>[m
+[32m+[m[32m<ul class="help-section-list">[m
+[32m+[m[32m<li>Interfaces</li>[m
+[32m+[m[32m<li>Classes</li>[m
+[32m+[m[32m<li>Enum Classes</li>[m
+[32m+[m[32m<li>Exception Classes</li>[m
+[32m+[m[32m<li>Annotation Interfaces</li>[m
+[32m+[m[32m</ul>[m
+[32m+[m[32m</section>[m
+[32m+[m[32m<section class="help-section" id="class">[m
+[32m+[m[32m<h3>Class or Interface</h3>[m
+[32m+[m[32m<p>Each class, interface, nested class and nested interface has its own separate page. Each of these pages has three sections consisting of a declaration and description, member summary tables, and detailed member descriptions. Entries in each of these sections are omitted if they are empty or not applicable.</p>[m
+[32m+[m[32m<ul class="help-section-list">[m
+[32m+[m[32m<li>Class Inheritance Diagram</li>[m
+[32m+[m[32m<li>Direct Subclasses</li>[m
+[32m+[m[32m<li>All Known Subinterfaces</li>[m
+[32m+[m[32m<li>All Known Implementing Classes</li>[m
+[32m+[m[32m<li>Class or Interface Declaration</li>[m
+[32m+[m[32m<li>Class or Interface Description</li>[m
+[32m+[m[32m</ul>[m
+[32m+[m[32m<br>[m
+[32m+[m[32m<ul class="help-section-list">[m
+[32m+[m[32m<li>Nested Class Summary</li>[m
+[32m+[m[32m<li>Enum Constant Summary</li>[m
+[32m+[m[32m<li>Field Summary</li>[m
+[32m+[m[32m<li>Property Summary</li>[m
+[32m+[m[32m<li>Constructor Summary</li>[m
+[32m+[m[32m<li>Method Summary</li>[m
+[32m+[m[32m<li>Required Element Summary</li>[m
+[32m+[m[32m<li>Optional Element Summary</li>[m
+[32m+[m[32m</ul>[m
+[32m+[m[32m<br>[m
+[32m+[m[32m<ul class="help-section-list">[m
+[32m+[m[32m<li>Enum Constant Details</li>[m
+[32m+[m[32m<li>Field Details</li>[m
+[32m+[m[32m<li>Property Details</li>[m
+[32m+[m[32m<li>Constructor Details</li>[m
+[32m+[m[32m<li>Method Details</li>[m
+[32m+[m[32m<li>Element Details</li>[m
+[32m+[m[32m</ul>[m
+[32m+[m[32m<p><span class="help-note">Note:</span> Annotation interfaces have required and optional elements, but not methods. Only enum classes have enum constants. The components of a record class are displayed as part of the declaration of the record class. Properties are a feature of JavaFX.</p>[m
+[32m+[m[32m<p>The summary entries are alphabetical, while the detailed descriptions are in the order they appear in the source code. This preserves the logical groupings established by the programmer.</p>[m
+[32m+[m[32m</section>[m
+[32m+[m[32m<section class="help-section" id="doc-file">[m
+[32m+[m[32m<h3>Other Files</h3>[m
+[32m+[m[32m<p>Packages and modules may contain pages with additional information related to the declarations nearby.</p>[m
+[32m+[m[32m</section>[m
+[32m+[m[32m<section class="help-section" id="use">[m
+[32m+[m[32m<h3>Use</h3>[m
+[32m+[m[32m<p>Each documented package, class and interface has its own Use page.  This page describes what packages, classes, methods, constructors and fields use any part of the given class or package. Given a class or interface A, its Use page includes subclasses of A, fields declared as A, methods that return A, and methods and constructors with parameters of type A.  You can access this page by first going to the package, class or interface, then clicking on the USE link in the navigation bar.</p>[m
+[32m+[m[32m</section>[m
+[32m+[m[32m<section class="help-section" id="tree">[m
+[32m+[m[32m<h3>Tree (Class Hierarchy)</h3>[m
+[32m+[m[32m<p>There is a <a href="overview-tree.html">Class Hierarchy</a> page for all packages, plus a hierarchy for each package. Each hierarchy page contains a list of classes and a list of interfaces. Classes are organized by inheritance structure starting with <code>java.lang.Object</code>. Interfaces do not inherit from <code>java.lang.Object</code>.</p>[m
+[32m+[m[32m<ul class="help-section-list">[m
+[32m+[m[32m<li>When viewing the Overview page, clicking on TREE displays the hierarchy for all packages.</li>[m
+[32m+[m[32m<li>When viewing a particular package, class or interface page, clicking on TREE displays the hierarchy for only that package.</li>[m
+[32m+[m[32m</ul>[m
+[32m+[m[32m</section>[m
+[32m+[m[32m<section class="help-section" id="all-packages">[m
+[32m+[m[32m<h3>All Packages</h3>[m
+[32m+[m[32m<p>The <a href="allpackages-index.html">All Packages</a> page contains an alphabetic index of all packages contained in the documentation.</p>[m
+[32m+[m[32m</section>[m
+[32m+[m[32m<section class="help-section" id="all-classes">[m
+[32m+[m[32m<h3>All Classes and Interfaces</h3>[m
+[32m+[m[32m<p>The <a href="allclasses-index.html">All Classes and Interfaces</a> page contains an alphabetic index of all classes and interfaces contained in the documentation, including annotation interfaces, enum classes, and record classes.</p>[m
+[32m+[m[32m</section>[m
+[32m+[m[32m<section class="help-section" id="index">[m
+[32m+[m[32m<h3>Index</h3>[m
+[32m+[m[32m<p>The <a href="index-files/index-1.html">Index</a> contains an alphabetic index of all classes, interfaces, constructors, methods, and fields in the documentation, as well as summary pages such as <a href="allpackages-index.html">All Packages</a>, <a href="allclasses-index.html">All Classes and Interfaces</a>.</p>[m
+[32m+[m[32m</section>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m<hr>[m
+[32m+[m[32m<span class="help-footnote">This help file applies to API documentation generated by the standard doclet.</span></main>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m</body>[m
+[32m+[m[32m</html>[m
+[1mdiff --git a/dist/javadoc/index-files/index-1.html b/dist/javadoc/index-files/index-1.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..3ffcb4b[m
+[1m--- /dev/null[m
+[1m+++ b/dist/javadoc/index-files/index-1.html[m
+[36m@@ -0,0 +1,65 @@[m
+[32m+[m[32m<!DOCTYPE HTML>[m
+[32m+[m[32m<html lang="es">[m
+[32m+[m[32m<head>[m
+[32m+[m[32m<!-- Generated by javadoc (21) on Sun Jun 07 22:27:31 CEST 2026 -->[m
+[32m+[m[32m<title>C-Index</title>[m
+[32m+[m[32m<meta name="viewport" content="width=device-width, initial-scale=1">[m
+[32m+[m[32m<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">[m
+[32m+[m[32m<meta name="dc.created" content="2026-06-07">[m
+[32m+[m[32m<meta name="description" content="index: C">[m
+[32m+[m[32m<meta name="generator" content="javadoc/IndexWriter">[m
+[32m+[m[32m<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">[m
+[32m+[m[32m<link rel="stylesheet" type="text/css" href="../script-dir/jquery-ui.min.css" title="Style">[m
+[32m+[m[32m<script type="text/javascript" src="../script.js"></script>[m
+[32m+[m[32m<script type="text/javascript" src="../script-dir/jquery-3.7.1.min.js"></script>[m
+[32m+[m[32m<script type="text/javascript" src="../script-dir/jquery-ui.min.js"></script>[m
+[32m+[m[32m</head>[m
+[32m+[m[32m<body class="index-page">[m
+[32m+[m[32m<script type="text/javascript">var pathtoroot = "../";[m
+[32m+[m[32mloadScripts(document, 'script');</script>[m
+[32m+[m[32m<noscript>[m
+[32m+[m[32m<div>JavaScript is disabled on your browser.</div>[m
+[32m+[m[32m</noscript>[m
+[32m+[m[32m<div class="flex-box">[m
+[32m+[m[32m<header role="banner" class="flex-header">[m
+[32m+[m[32m<nav role="navigation">[m
+[32m+[m[32m<!-- ========= START OF TOP NAVBAR ======= -->[m
+[32m+[m[32m<div class="top-nav" id="navbar-top"><button id="navbar-toggle-button" aria-controls="navbar-top" aria-expanded="false" aria-label="Toggle navigation links"><span class="nav-bar-toggle-icon">&nbsp;</span><span class="nav-bar-toggle-icon">&nbsp;</span><span class="nav-bar-toggle-icon">&nbsp;</span></button>[m
+[32m+[m[32m<div class="skip-nav"><a href="#skip-navbar-top" title="Skip navigation links">Skip navigation links</a></div>[m
+[32m+[m[32m<ul id="navbar-top-firstrow" class="nav-list" title="Navigation">[m
+[32m+[m[32m<li><a href="../programameeste/package-summary.html">Package</a></li>[m
+[32m+[m[32m<li>Class</li>[m
+[32m+[m[32m<li>Use</li>[m
+[32m+[m[32m<li><a href="../overview-tree.html">Tree</a></li>[m
+[32m+[m[32m<li class="nav-bar-cell1-rev">Index</li>[m
+[32m+[m[32m<li><a href="../help-doc.html#index">Help</a></li>[m
+[32m+[m[32m</ul>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m<div class="sub-nav">[m
+[32m+[m[32m<div id="navbar-sub-list"></div>[m
+[32m+[m[32m<div class="nav-list-search"><a href="../search.html">SEARCH</a>[m
+[32m+[m[32m<input type="text" id="search-input" disabled placeholder="Search">[m
+[32m+[m[32m<input type="reset" id="reset-button" disabled value="reset">[m
+[32m+[m[32m</div>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m<!-- ========= END OF TOP NAVBAR ========= -->[m
+[32m+[m[32m<span class="skip-nav" id="skip-navbar-top"></span></nav>[m
+[32m+[m[32m</header>[m
+[32m+[m[32m<div class="flex-content">[m
+[32m+[m[32m<main role="main">[m
+[32m+[m[32m<div class="header">[m
+[32m+[m[32m<h1>Index</h1>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m<a href="index-1.html">C</a>&nbsp;<a href="index-2.html">E</a>&nbsp;<a href="index-3.html">G</a>&nbsp;<a href="index-4.html">P</a>&nbsp;<a href="index-5.html">S</a>&nbsp;<br><a href="../allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="../allpackages-index.html">All&nbsp;Packages</a>[m
+[32m+[m[32m<h2 class="title" id="I:C">C</h2>[m
+[32m+[m[32m<dl class="index">[m
+[32m+[m[32m<dt><a href="../programameeste/Persona.html#cumplirAnios()" class="member-name-link">cumplirAnios()</a> - Method in class programameeste.<a href="../programameeste/Persona.html" title="class in programameeste">Persona</a></dt>[m
+[32m+[m[32m<dd>[m
+[32m+[m[32m<div class="block">Simula el paso del tiempo haciendo que la persona cumpla un año más.</div>[m
+[32m+[m[32m</dd>[m
+[32m+[m[32m</dl>[m
+[32m+[m[32m<a href="index-1.html">C</a>&nbsp;<a href="index-2.html">E</a>&nbsp;<a href="index-3.html">G</a>&nbsp;<a href="index-4.html">P</a>&nbsp;<a href="index-5.html">S</a>&nbsp;<br><a href="../allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="../allpackages-index.html">All&nbsp;Packages</a></main>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m</div>[m
+[32m+[m[32m</body>[m
+[32m+[m[32m</html>[m
+[1mdiff --git a/dist/javadoc/index-files/index-2.html b/dist/javadoc/index-files/index-2.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..213f8c0[m
+[1m--- /dev/null[m
+[1m+++ b/dist/javadoc/index-files/index-2.html[m
+[36m@@ -0,0 +1,65 @@[m
+[32m+[m[32m<!DOCTYPE HTML>[m
+[32m+[m[32m<html lang="es">[m
+[32m+[m[32m<head>[m
+[32m+[m[32m<!-- Generated by javadoc (21) on Sun Jun 07 22:27:31 CEST 2026 -->[m
+[32m+[m[32m<title>E-Index</title>[m
+[32m+[m[32m<meta name="viewport" content="width=device-width, initial-scale=1">[m
+[32m+[m[32m<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">[m
+[32m+[m[32m<meta name="dc.created" content="2026-06-07">[m
+[32m+[m[32m<meta name="description" content="index: E">[m
+[32m+[m[32m<meta name="generator" content="javadoc/IndexWriter">[m
+[32m+[m[32m<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">[m
+[32m+[m[32m<link rel="styl

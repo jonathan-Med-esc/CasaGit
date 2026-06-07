@@ -4,6 +4,8 @@
  */
 package programameeste;
 
+import java.io.File;
+
 
 /**
  * Representa a una persona con atributos básicos como nombre, edad y un identificador único.
@@ -32,6 +34,27 @@ public class Persona {
         this.edad = 0;
         this.dni = "00000000X";
     }
+    
+    /**
+     * 
+     * 
+     * @param f fichero de clientes 
+     */
+    public Persona(File f) {
+        this.nombre = "Sin nombre";
+        this.edad = 0;
+        this.dni = "00000000X";
+    }
+    /**
+     * Metodo para ver datos de las personas 
+     * @return datos de la persona
+     */
+    @Override
+    public String toString() {
+        return "Persona{" + "nombre=" + nombre + ", edad=" + edad + ", dni=" + dni + '}';
+    }
+    
+    
 
     /**
      * Constructor con todos los parámetros para inicializar una persona con datos específicos.
@@ -56,7 +79,7 @@ public class Persona {
     public void saludar() {
         System.out.println("Hola, mi nombre es " + this.nombre + " y tengo " + this.edad + " años.");
     }
-
+    
     /**
      * Comprueba si la persona es mayor de edad según la legislación estándar (18 años o más).
      * * @return true si la persona tiene 18 años o más; false en caso contrario.
